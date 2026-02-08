@@ -147,7 +147,10 @@ function updatePageTranslations() {
     document.getElementById('decryptKey').placeholder = t('keyPlaceholder');
 
     // update labels
-    document.querySelector('label[for="autoGenerateKey"]').childNodes[1].textContent = t('autoGenerateKeyLabel');
+    const labelSpan = document.querySelector('label[for="autoGenerateKey"] span');
+    if (labelSpan) {
+        labelSpan.textContent = t('autoGenerateKeyLabel');
+    }
 
     // update buttons (only if they're in their default state)
     const encryptBtn = document.getElementById('encryptBtn');
