@@ -37,6 +37,12 @@
     outline-offset: 2px;
 }
 
+.language-button {
+    font-size: 12px;
+    font-weight: bold;
+    font-family: var(--font-family);
+}
+
 .key-display {
     font-family: var(--font-family);
     padding: var(--spacing-sm);
