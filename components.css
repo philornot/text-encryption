@@ -1,0 +1,128 @@
+/**
+ * Component-specific styles for the text encryption application.
+ * Includes key display, output areas, button groups, and controls.
+ */
+
+.key-display {
+    font-family: var(--font-family);
+    padding: var(--spacing-sm);
+    background-color: var(--color-surface);
+    margin-top: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    display: none;
+    transition: var(--transition-theme);
+    border: 1px solid var(--color-border);
+}
+
+.key-display:hover {
+    background-color: var(--color-button-hover);
+}
+
+.output {
+    margin-top: var(--spacing-sm);
+}
+
+.output textarea {
+    margin-bottom: 0;
+}
+
+.button-group {
+    margin-top: var(--spacing-sm);
+}
+
+#copyKeyBtn {
+    margin-bottom: var(--spacing-sm);
+}
+
+/* Status classes */
+.status-success {
+    color: var(--color-success) !important;
+    border-color: var(--color-success) !important;
+}
+
+.status-warning {
+    color: var(--color-warning) !important;
+    border-color: var(--color-warning) !important;
+}
+
+.status-error {
+    color: var(--color-error) !important;
+    border-color: var(--color-error) !important;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+    position: fixed;
+    top: var(--spacing-md);
+    right: var(--spacing-md);
+    padding: var(--spacing-xs);
+    background-color: var(--color-button-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 20px;
+    line-height: 1;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-theme);
+    z-index: 1000;
+}
+
+.theme-toggle:hover {
+    background-color: var(--color-button-hover);
+}
+
+/* GitHub link */
+.github-link {
+    position: fixed;
+    top: var(--spacing-md);
+    left: var(--spacing-md);
+    padding: var(--spacing-xs);
+    background-color: var(--color-button-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    font-size: 20px;
+    line-height: 1;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-theme);
+    z-index: 1000;
+}
+
+.github-link:hover {
+    background-color: var(--color-button-hover);
+    text-decoration: none;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 640px) {
+    body {
+        margin: var(--spacing-md) auto;
+        padding: var(--spacing-sm);
+    }
+
+    .theme-toggle,
+    .github-link {
+        top: var(--spacing-sm);
+    }
+
+    .theme-toggle {
+        right: var(--spacing-sm);
+    }
+
+    .github-link {
+        left: var(--spacing-sm);
+    }
+
+    h1 {
+        margin-top: var(--spacing-lg);
+    }
+}
