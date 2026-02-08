@@ -55,7 +55,7 @@ const translations = {
 
         // accessibility
         themeToggleAria: 'toggle dark/light theme',
-        githubLinkAria: 'view source code on github',
+        githubLinkAria: 'view source code',
         languageToggleAria: 'switch language'
     },
     pl: {
@@ -88,7 +88,7 @@ const translations = {
         reEncryptedStatus: 'ponownie zaszyfrowano',
         decryptedStatus: 'odszyfrowano',
         reDecryptedStatus: 'ponownie odszyfrowano',
-        againSuffix: ' jeszcze raz',
+        againSuffix: ' ponownie',
         keyCopiedStatus: 'klucz skopiowany',
         encryptedCopiedStatus: 'zaszyfrowany tekst skopiowany',
         decryptedCopiedStatus: 'odszyfrowany tekst skopiowany',
@@ -98,18 +98,18 @@ const translations = {
         noKeyWarning: 'wpisz tajny klucz',
         noEncryptedTextWarning: 'wklej zaszyfrowany tekst',
         noDecryptKeyWarning: 'wpisz tajny klucz',
-        nothingToCopyEncryptWarning: 'nie ma czego kopiować. zaszyfruj tekst najpierw',
-        nothingToCopyDecryptWarning: 'nie ma czego kopiować. odszyfruj tekst najpierw',
+        nothingToCopyEncryptWarning: 'nie ma czego skopiować. najpierw zaszyfruj tekst',
+        nothingToCopyDecryptWarning: 'nie ma czego skopiować. najpierw odszyfruj tekst',
         noKeyToCopyWarning: 'brak klucza do skopiowania',
 
         // errors
         encryptionFailedError: 'szyfrowanie nie powiodło się: ',
         decryptionFailedError: 'deszyfrowanie nie powiodło się: ',
-        decryptionCheckError: 'deszyfrowanie nie powiodło się. sprawdź klucz lub tekst',
+        decryptionCheckError: 'deszyfrowanie nie powiodło się. sprawdź klucz i/lub tekst',
 
         // accessibility
         themeToggleAria: 'przełącz tryb ciemny/jasny',
-        githubLinkAria: 'zobacz kod źródłowy na githubie',
+        githubLinkAria: 'zobacz kod źródłowy',
         languageToggleAria: 'zmień język'
     }
 };

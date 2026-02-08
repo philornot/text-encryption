@@ -5,97 +5,149 @@
 
 /* controls container */
 .controls {
-    display: flex;
-    gap: var(--spacing-xs);
-    justify-content: center;
-    margin-bottom: var(--spacing-lg);
+  display: flex;
+  gap: var(--spacing-xs);
+  justify-content: center;
+  margin-bottom: var(--spacing-lg);
 }
 
 .control-button {
-    padding: var(--spacing-xs);
-    background-color: var(--color-button-bg);
-    border: 1px solid var(--color-border);
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    width: 36px;
-    height: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: var(--transition-theme);
-    color: var(--color-text);
-    text-decoration: none;
-    margin-top: 0;
+  padding: var(--spacing-xs);
+  background-color: var(--color-button-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-theme);
+  color: var(--color-text);
+  text-decoration: none;
+  margin-top: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .control-button:hover {
-    background-color: var(--color-button-hover);
+  background-color: var(--color-button-hover);
+}
+
+.control-button:active {
+  background-color: var(--color-button-active);
+  transform: scale(0.95);
 }
 
 .control-button:focus {
-    outline: 2px solid var(--color-link);
-    outline-offset: 2px;
+  outline: 2px solid var(--color-link);
+  outline-offset: 2px;
 }
 
 .language-button {
-    font-size: 12px;
-    font-weight: bold;
-    font-family: var(--font-family);
+  font-size: 12px;
+  font-weight: bold;
+  font-family: var(--font-family);
 }
 
 .key-display {
-    font-family: var(--font-family);
-    padding: var(--spacing-sm);
-    background-color: var(--color-surface);
-    margin-top: var(--spacing-sm);
-    margin-bottom: var(--spacing-sm);
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    display: none;
-    transition: var(--transition-theme);
-    border: 1px solid var(--color-border);
+  font-family: var(--font-family);
+  padding: var(--spacing-sm);
+  background-color: var(--color-surface);
+  margin-top: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  display: none;
+  transition: var(--transition-theme);
+  border: 1px solid var(--color-border);
 }
 
 .key-display:hover {
-    background-color: var(--color-button-hover);
+  background-color: var(--color-button-hover);
+}
+
+.key-display:active {
+  background-color: var(--color-button-active);
+  transform: scale(0.98);
 }
 
 .output {
-    margin-top: var(--spacing-sm);
+  margin-top: var(--spacing-sm);
 }
 
 .output textarea {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .button-group {
-    margin-top: var(--spacing-sm);
+  margin-top: var(--spacing-sm);
 }
 
 #copyKeyBtn {
-    margin-bottom: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
 }
 
 /* status classes */
 .status-success {
-    color: var(--color-success) !important;
-    border-color: var(--color-success) !important;
+  color: var(--color-success) !important;
+  border-color: var(--color-success) !important;
 }
 
 .status-warning {
-    color: var(--color-warning) !important;
-    border-color: var(--color-warning) !important;
+  color: var(--color-warning) !important;
+  border-color: var(--color-warning) !important;
 }
 
 .status-error {
-    color: var(--color-error) !important;
-    border-color: var(--color-error) !important;
+  color: var(--color-error) !important;
+  border-color: var(--color-error) !important;
 }
 
 /* mobile responsiveness */
 @media (max-width: 640px) {
-    body {
-        margin: var(--spacing-md) auto;
-        padding: var(--spacing-sm);
-    }
+  body {
+    margin: var(--spacing-md) auto;
+    padding: var(--spacing-sm);
+  }
+
+  h1 {
+    font-size: 24px;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  h2 {
+    font-size: 20px;
+    margin-top: var(--spacing-md);
+  }
+
+  .controls {
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .control-button {
+    width: 44px;
+    height: 44px;
+    font-size: 16px;
+  }
+
+  textarea {
+    min-height: 120px;
+    font-size: 16px;
+  }
+
+  input[type="password"] {
+    font-size: 16px;
+  }
+
+  button {
+    font-size: 16px;
+    width: 100%;
+  }
+
+  .key-display {
+    font-size: 14px;
+    padding: var(--spacing-sm);
+    word-break: break-all;
+  }
 }
