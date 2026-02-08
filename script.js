@@ -1,6 +1,6 @@
 /**
- * Generates a cryptographically secure random key.
- * Uses 32 random bytes converted to base64 for strong security.
+ * generates a cryptographically secure random key.
+ * uses 32 random bytes converted to base64 for strong security.
  *
  * @returns {string} A secure random key string.
  */
@@ -12,7 +12,7 @@ function generateSecureKey() {
 
 
 /**
- * Masks a key string, showing only first 8 and last 4 characters.
+ * masks a key string, showing only first 8 and last 4 characters.
  *
  * @param {string} key - The key to mask.
  * @returns {string} Masked key string.
@@ -36,7 +36,7 @@ const buttonStates = {
 
 
 /**
- * Shows a status message in a button temporarily.
+ * shows a status message in a button temporarily.
  *
  * @param {string} buttonId - ID of the button element.
  * @param {string} message - Message to display.
@@ -76,8 +76,8 @@ function showButtonStatus(buttonId, message, type, duration = 2000) {
 
 
 /**
- * Updates button states' original text from translations.
- * Called after language changes.
+ * updates button states' original text from translations.
+ * called after language changes.
  */
 function updateButtonStatesText() {
     buttonStates.copyEncrypted.originalText = t('copyEncryptedButton');
@@ -91,7 +91,7 @@ let currentKey = '';
 
 
 /**
- * Toggles between auto-generated key and manual key input.
+ * toggles between auto-generated key and manual key input.
  */
 function toggleKeyInput() {
     const autoGenerate = document.getElementById('autoGenerateKey').checked;
@@ -112,8 +112,8 @@ function toggleKeyInput() {
 
 
 /**
- * Encrypts the plaintext using the provided key.
- * Uses AES-256 encryption with a random salt for each encryption.
+ * encrypts the plaintext using the provided key.
+ * uses AES-256 encryption with a random salt for each encryption.
  */
 function encrypt() {
     const plaintext = document.getElementById('plaintext').value;
@@ -174,7 +174,7 @@ function encrypt() {
 
 
 /**
- * Copies the generated key to clipboard.
+ * copies the generated key to clipboard.
  */
 function copyGeneratedKey() {
     if (!currentKey) {
@@ -222,7 +222,7 @@ function copyGeneratedKey() {
 
 
 /**
- * Decrypts the encrypted text using the provided key.
+ * decrypts the encrypted text using the provided key.
  */
 function decrypt() {
     const encryptedText = document.getElementById('encryptedInput').value;
@@ -280,7 +280,7 @@ function decrypt() {
 
 
 /**
- * Copies the encrypted text to clipboard.
+ * copies the encrypted text to clipboard.
  */
 function copyEncrypted() {
     const ciphertext = document.getElementById('ciphertext');
@@ -308,7 +308,7 @@ function copyEncrypted() {
 
 
 /**
- * Copies the decrypted text to clipboard.
+ * copies the decrypted text to clipboard.
  */
 function copyDecrypted() {
     const decryptedText = document.getElementById('decryptedText');
@@ -336,7 +336,7 @@ function copyDecrypted() {
 
 
 /**
- * Handles Enter key press in encrypt key input.
+ * handles Enter key press in encrypt key input.
  *
  * @param {KeyboardEvent} event - The keyboard event.
  */
@@ -349,7 +349,7 @@ function handleEncryptKeyPress(event) {
 
 
 /**
- * Handles Enter key press in decrypt key input.
+ * handles Enter key press in decrypt key input.
  *
  * @param {KeyboardEvent} event - The keyboard event.
  */
@@ -362,8 +362,8 @@ function handleDecryptKeyPress(event) {
 
 
 /**
- * Initializes the application.
- * Sets up theme, i18n, and button states.
+ * initializes the application.
+ * sets up theme, i18n, and button states.
  */
 function initializeApp() {
     initializeTheme();
@@ -371,7 +371,7 @@ function initializeApp() {
     updateButtonStatesText();
 }
 
-// Initialize when DOM is ready
+// initialize when DOM is ready
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initializeApp);
 } else {

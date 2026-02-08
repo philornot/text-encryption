@@ -1,32 +1,32 @@
 /**
- * Design tokens for the text encryption application.
- * Defines colors, spacing, typography, and theme variables.
+ * design tokens for the text encryption application.
+ * defines colors, spacing, typography, and theme variables.
  */
 
 :root {
-    /* Spacing scale */
+    /* spacing scale */
     --spacing-xs: 8px;
     --spacing-sm: 10px;
     --spacing-md: 20px;
     --spacing-lg: 40px;
     --spacing-xl: 50px;
 
-    /* Typography */
+    /* typography */
     --font-family: monospace;
     --font-size-base: 16px;
     --font-size-h1: 32px;
     --font-size-h2: 24px;
 
-    /* Layout */
+    /* layout */
     --max-width: 600px;
     --border-radius: 4px;
     --textarea-min-height: 100px;
 
-    /* Transitions */
+    /* transitions */
     --transition-theme: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Light theme (default) */
+/* light theme (default) */
 :root {
     --color-bg: #ffffff;
     --color-text: #000000;
@@ -44,7 +44,7 @@
     --color-link-hover: #0052a3;
 }
 
-/* Dark theme */
+/* dark theme */
 @media (prefers-color-scheme: dark) {
     :root {
         --color-bg: #1a1a1a;
@@ -64,7 +64,7 @@
     }
 }
 
-/* Manual theme override */
+/* manual theme override */
 [data-theme="light"] {
     --color-bg: #ffffff;
     --color-text: #000000;

@@ -1,151 +1,75 @@
 /**
- * Internationalization (i18n) module for the text encryption application.
- * Manages translations and language switching.
+ * Theme management module for the text encryption application.
+ * Handles dark/light theme switching and persistence.
  */
 
-const translations = {
-    en: {
-        // Page title and headings
-        pageTitle: 'text encryption',
-        encryptHeading: 'encrypt',
-        decryptHeading: 'decrypt',
-
-        // Placeholders
-        plaintextPlaceholder: 'enter text to encrypt...',
-        encryptedPlaceholder: 'encrypted text will appear here...',
-        encryptedInputPlaceholder: 'paste encrypted text...',
-        decryptedPlaceholder: 'decrypted text will appear here...',
-        keyPlaceholder: 'enter secret key...',
-
-        // Labels
-        autoGenerateKeyLabel: 'auto-generate secret key',
-        keyDisplayPrefix: 'key (click to copy): ',
-
-        // Buttons
-        encryptButton: 'encrypt',
-        reEncryptButton: 're-encrypt',
-        decryptButton: 'decrypt',
-        reDecryptButton: 're-decrypt',
-        copyEncryptedButton: 'copy encrypted text',
-        copyDecryptedButton: 'copy decrypted text',
-
-        // Status messages
-        encryptedStatus: 'encrypted',
-        reEncryptedStatus: 're-encrypted',
-        decryptedStatus: 'decrypted',
-        reDecryptedStatus: 're-decrypted',
-        againSuffix: ' again',
-        keyCopiedStatus: 'key copied',
-        encryptedCopiedStatus: 'encrypted text copied',
-        decryptedCopiedStatus: 'decrypted text copied',
-
-        // Warnings
-        noTextWarning: 'please enter text to encrypt',
-        noKeyWarning: 'please enter a secret key',
-        noEncryptedTextWarning: 'please paste encrypted text',
-        noDecryptKeyWarning: 'please enter the secret key',
-        nothingToCopyEncryptWarning: 'nothing to copy. encrypt text first',
-        nothingToCopyDecryptWarning: 'nothing to copy. decrypt text first',
-        noKeyToCopyWarning: 'no key to copy',
-
-        // Errors
-        encryptionFailedError: 'encryption failed: ',
-        decryptionFailedError: 'decryption failed: ',
-        decryptionCheckError: 'decryption failed. check your key or text',
-
-        // Accessibility
-        themeToggleAria: 'Toggle dark/light theme',
-        githubLinkAria: 'View source code on GitHub'
-    }
-};
-
-let currentLanguage = 'en';
-
 /**
- * Gets a translated string for the current language.
+ * Gets the current theme preference.
+ * Checks localStorage first, then system preference.
  *
- * @param {string} key - The translation key.
- * @returns {string} The translated string.
+ * @returns {string} 'light' or 'dark'.
  */
-function t(key) {
-    return translations[currentLanguage][key] || key;
+function getPreferredTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        return savedTheme;
+    }
+
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 }
 
 /**
- * Updates all translatable elements on the page.
- */
-function updatePageTranslations() {
-    // Update page title
-    document.title = t('pageTitle');
-
-    // Update headings
-    document.querySelector('h1').textContent = t('pageTitle');
-    document.querySelectorAll('h2')[0].textContent = t('encryptHeading');
-    document.querySelectorAll('h2')[1].textContent = t('decryptHeading');
-
-    // Update placeholders
-    document.getElementById('plaintext').placeholder = t('plaintextPlaceholder');
-    document.getElementById('ciphertext').placeholder = t('encryptedPlaceholder');
-    document.getElementById('encryptedInput').placeholder = t('encryptedInputPlaceholder');
-    document.getElementById('decryptedText').placeholder = t('decryptedPlaceholder');
-    document.getElementById('encryptKey').placeholder = t('keyPlaceholder');
-    document.getElementById('decryptKey').placeholder = t('keyPlaceholder');
-
-    // Update labels
-    document.querySelector('label[for="autoGenerateKey"]').childNodes[1].textContent = t('autoGenerateKeyLabel');
-
-    // Update buttons (only if they're in their default state)
-    const encryptBtn = document.getElementById('encryptBtn');
-    const decryptBtn = document.getElementById('decryptBtn');
-
-    if (!buttonStates.encrypt.timeout) {
-        encryptBtn.textContent = buttonStates.encrypt.hasEncrypted ? t('reEncryptButton') : t('encryptButton');
-    }
-
-    if (!buttonStates.decrypt.timeout) {
-        decryptBtn.textContent = buttonStates.decrypt.hasDecrypted ? t('reDecryptButton') : t('decryptButton');
-    }
-
-    document.getElementById('copyEncryptedBtn').textContent = t('copyEncryptedButton');
-    document.getElementById('copyDecryptedBtn').textContent = t('copyDecryptedButton');
-
-    // Update button states original text
-    buttonStates.copyEncrypted.originalText = t('copyEncryptedButton');
-    buttonStates.copyDecrypted.originalText = t('copyDecryptedButton');
-    buttonStates.encrypt.originalText = t('encryptButton');
-    buttonStates.decrypt.originalText = t('decryptButton');
-
-    // Update ARIA labels
-    document.getElementById('themeToggle').setAttribute('aria-label', t('themeToggleAria'));
-    document.getElementById('githubLink').setAttribute('aria-label', t('githubLinkAria'));
-}
-
-/**
- * Sets the current language and updates the page.
+ * Applies the specified theme to the document.
  *
- * @param {string} lang - The language code (e.g., 'en', 'pl').
+ * @param {string} theme - 'light' or 'dark'.
  */
-function setLanguage(lang) {
-    if (translations[lang]) {
-        currentLanguage = lang;
-        updatePageTranslations();
-        localStorage.setItem('preferredLanguage', lang);
+function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    updateThemeToggleIcon(theme);
+}
+
+/**
+ * Updates the theme toggle button icon.
+ *
+ * @param {string} theme - Current theme ('light' or 'dark').
+ */
+function updateThemeToggleIcon(theme) {
+    const icon = document.getElementById('themeIcon');
+    if (icon) {
+        if (theme === 'dark') {
+            // sun icon for dark mode (clicking it will switch to light)
+            icon.innerHTML = '<circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path>';
+        } else {
+            // moon icon for light mode (clicking it will switch to dark)
+            icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+        }
     }
 }
 
 /**
- * Initializes the i18n system.
- * Loads the user's preferred language from localStorage or browser settings.
+ * Toggles between light and dark themes.
  */
-function initializeI18n() {
-    const savedLanguage = localStorage.getItem('preferredLanguage');
-    const browserLanguage = navigator.language.split('-')[0];
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
 
-    if (savedLanguage && translations[savedLanguage]) {
-        setLanguage(savedLanguage);
-    } else if (translations[browserLanguage]) {
-        setLanguage(browserLanguage);
-    } else {
-        setLanguage('en');
-    }
+    applyTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+}
+
+/**
+ * Initializes the theme system.
+ * Applies saved or system-preferred theme and sets up listeners.
+ */
+function initializeTheme() {
+    const preferredTheme = getPreferredTheme();
+    applyTheme(preferredTheme);
+
+    // listen for system theme changes
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        // only auto-switch if user hasn't manually set a preference
+        if (!localStorage.getItem('theme')) {
+            applyTheme(e.matches ? 'dark' : 'light');
+        }
+    });
 }
